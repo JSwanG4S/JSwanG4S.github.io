@@ -1,0 +1,63 @@
+html{
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;
+	font-family: helvetica;
+	margin-right: 0;
+}
+body{
+	margin: 0;
+	padding: 0;
+}
+
+#navbar{
+	font-size: 18px;
+	background: inherit;
+	display: block;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+	top: 0;
+	left: 0;
+	overflow: hidden;
+	
+	color: black;
+	background-color: white;
+	font-weight: bold;
+	
+	border-bottom: solid 2px black;
+}
+
+#navbar li{
+	list-style-type: none;
+	display: inline-block;
+	top: 0;
+	left: 0;
+}
+#navbar li:hover{
+	background-color: #80d8ff;
+	cursor: pointer;
+}
+#navbar li a{
+	display: block;
+	padding: 15px;
+	text-align: center;
+	text-decoration: none;
+}
+#g4slogo{
+	max-width: 52px;
+	max-height: 52px;
+	margin: 0;
+	padding: 0;
+	vertical-align: middle;
+}
+
+iframe{
+	height: 100vh;
+	width: 100%;
+	position: absolute;
+	left: 0;
+	border: none;
+}
