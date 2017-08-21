@@ -184,6 +184,18 @@ select
 	color: #039be5;
 }
 
+.highlightQuestion
+{
+  -webkit-animation: highlightAnimation 0.5s;
+  animation: highlightAnimation 0.5s;
+}
+@keyframes highlightAnimation
+{
+	from{background-color: #e57373}
+	to{background-color: white}
+}
+
+
 
 .nextQuestionButton
 {

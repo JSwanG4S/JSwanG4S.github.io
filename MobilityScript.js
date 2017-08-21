@@ -510,10 +510,15 @@
 	
 	function showQuestion(question) {
 		document.getElementById(question).style.display = 'inline-block';
+		document.getElementById(question).className += " highlightQuestion";
+		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);
 	}
 
 	function showSubQuestion(question) {
 		document.getElementById(question).style.visibility = 'visible';
+		document.getElementById(question).className += " highlightQuestion";
+		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);
+		
 	}
 	
 	function hideActiveXPrompt() {
