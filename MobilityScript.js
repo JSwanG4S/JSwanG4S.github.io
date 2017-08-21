@@ -171,7 +171,7 @@
 						showSubQuestion('q2d');
 					}
 				}
-				else if(document.getElementById('q2cDropdown').value == "No"){
+				else if(document.getElementById('q2cDropdown').value == "Electric"){
 					showWheelchairCheckBox();
 				}
 				
