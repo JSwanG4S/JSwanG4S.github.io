@@ -184,7 +184,7 @@ select
 }
 @keyframes highlightAnimation
 {
-	from{background-color: #e57373}
+	from{background-color: #a5d6a7}
 	to{background-color: white}
 }
 
