@@ -481,8 +481,8 @@
 		document.getElementById("equipmentDiv").innerHTML = equipment ;
 		
 	}
-
-
+	
+	
 	function hideEverything() {
 		
 		hideSuggestionBox();
@@ -513,7 +513,7 @@
 		document.getElementById(question).className += " highlightQuestion";
 		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);
 	}
-
+	
 	function showSubQuestion(question) {
 		document.getElementById(question).style.visibility = 'visible';
 		document.getElementById(question).className += " highlightQuestion";
@@ -733,18 +733,20 @@
 			document.getElementById('q6aInputBox').value = "";
 			
 			
-			
-			for(iterator = 0; iterator < previousAnswers.length; iterator++)
+			if(useCookies)
 			{
-				allValues += previousAnswers[iterator] + "|";
+				for(iterator = 0; iterator < previousAnswers.length; iterator++)
+				{
+					allValues += previousAnswers[iterator] + "|";
+				}
+				document.cookie = "allValues=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; 
+				
+				var now = new Date();
+				var time = now.getTime();
+				time += (60*1000) * cookieDuration;
+				now.setTime(time);
+				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
-			document.cookie = "allValues=;expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"; 
-			
-			var now = new Date();
-			var time = now.getTime();
-			time += (60*1000) * cookieDuration;
-			now.setTime(time);
-			document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			
 			hideEverything();
 		}
