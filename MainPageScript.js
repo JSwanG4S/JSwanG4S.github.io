@@ -5,6 +5,7 @@ function ChangeTab(tab)
 {
 	if(tab != activeTab)
 	{
+		activeTab = tab;
 		document.getElementById("assessmentFrame").contentWindow.restartAssessment();
 		ClearActiveTabs();
 		document.getElementById("assessmentFrame").src = tab + ".html";
