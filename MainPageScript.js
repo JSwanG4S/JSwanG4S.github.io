@@ -3,6 +3,7 @@
 function ChangeTab(tab)
 {
 	ClearActiveTabs();
+	document.getElementById("assessmentFrame").contentWindow.restartAssessment();
 	document.getElementById("assessmentFrame").src = tab + ".html";
 	document.getElementById(tab + 'Tab').classList.add("tab_selected");
 	
