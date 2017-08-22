@@ -1,12 +1,15 @@
 
+var activeTab = "MobilityAssessment";
 
 function ChangeTab(tab)
 {
-	ClearActiveTabs();
-	document.getElementById("assessmentFrame").contentWindow.restartAssessment();
-	document.getElementById("assessmentFrame").src = tab + ".html";
-	document.getElementById(tab + 'Tab').classList.add("tab_selected");
-	
+	if(tab != activeTab)
+	{
+		document.getElementById("assessmentFrame").contentWindow.restartAssessment();
+		ClearActiveTabs();
+		document.getElementById("assessmentFrame").src = tab + ".html";
+		document.getElementById(tab + 'Tab').classList.add("tab_selected");
+	}
 }
 
 
