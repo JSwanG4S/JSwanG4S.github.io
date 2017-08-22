@@ -18,6 +18,7 @@ body{
 	display: block;
 	margin: 0;
 	padding: 0;
+	padding-top: 5px;
 	width: 100%;
 	top: 0;
 	left: 0;
@@ -27,31 +28,48 @@ body{
 	background-color: white;
 	font-weight: bold;
 	
-	border-bottom: solid 2px black;
+	z-index: 10;
 }
 
 #navbar li{
-	list-style-type: none;
+	list-style: none;
+	margin: 0;
 	display: inline-block;
 	top: 0;
 	left: 0;
 }
-#navbar li:hover{
-	background-color: #b3e5fc;
-	cursor: pointer;
-}
 #navbar li a{
+	position: relative;
 	display: block;
 	padding: 15px;
 	text-align: center;
 	text-decoration: none;
+	border-bottom: none;
 }
 #g4slogo{
-	max-width: 52px;
-	max-height: 52px;
+	max-width: 50px;
+	max-height: 50px;
 	margin: 0;
 	padding: 0;
 	vertical-align: middle;
+}
+.tab{
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+}
+.tab:hover{
+	background-color: #bbdefb;
+	cursor: pointer;
+}
+.tab_selected{
+	position: relative;
+	background-color: #e3f2fd;
+	box-shadow: 0px 0px 5px black;
+	z-index: 1000;
+}
+.tab_selected:hover{
+	background-color: #e3f2fd;
+	cursor: pointer;
 }
 
 iframe{
@@ -60,9 +78,11 @@ iframe{
 	position: absolute;
 	left: 0;
 	border: none;
+	z-index: 10;
+	box-shadow: 0px 0px 4px black;
 }
 
-.cantselect{
+.cant_select{
 	user-drag: none; 
 	user-select: none;
 	-moz-user-select: none;
