@@ -6,10 +6,11 @@ function ChangeTab(assessment)
 	if(assessment != activeAssessment)
 	{
 		activeAssessment = assessment;
-		document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
+		document.getElementById("assessmentFrame").contentWindow.restartAssessment();
 		ClearActiveTabs();
-		ClearActiveFrames();
-		document.getElementById(assessment + "Frame").style.display = "block";
+		//ClearActiveFrames();
+		//document.getElementById(assessment + "Frame").style.display = "block";
+		document.getElementById("assessmentFrame").src = assessment + ".html";
 		document.getElementById(assessment + 'Tab').classList.add("tab_selected");
 	}
 }
