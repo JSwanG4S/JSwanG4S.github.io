@@ -716,21 +716,21 @@
 			
 			document.getElementById('q1Dropdown').selectedIndex = 0;
 			document.getElementById('q1aDropdown').selectedIndex = 0;
-			document.getElementById('q1bInputBox').value = "";		
+			document.getElementById('q1bInputBox').value = 4;		
 			document.getElementById('q2Dropdown').selectedIndex = 0;
 			document.getElementById('q2aDropdown').selectedIndex = 0;
 			document.getElementById('q2bDropdown').selectedIndex = 0;
 			document.getElementById('q2cDropdown').selectedIndex = 0;
 			document.getElementById('q2dDropdown').selectedIndex = 0;
-			document.getElementById('q2eInputBox').value = "";		
+			document.getElementById('q2eInputBox').value = 114;		
 			document.getElementById('q3Dropdown').selectedIndex = 0;		
 			document.getElementById('q4Dropdown').selectedIndex = 0;		
 			document.getElementById('q5Dropdown').selectedIndex = 0;
 			document.getElementById('q5aDropdown').selectedIndex = 0;
 			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5cInputBox').value = "";		
+			document.getElementById('q5cInputBox').value = 114;
 			document.getElementById('q6Dropdown').selectedIndex = 0;
-			document.getElementById('q6aInputBox').value = "";
+			document.getElementById('q6aInputBox').value = 114;
 			
 			
 			if(useCookies)
