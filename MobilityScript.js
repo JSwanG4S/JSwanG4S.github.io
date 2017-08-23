@@ -126,7 +126,7 @@
 						}
 						else
 						{
-							q2StoreNextQuestion = 'q4';
+							q2StoreNextQuestion = 'q3';
 							showSubQuestion('q2d');
 						}
 					}
@@ -140,7 +140,7 @@
 					}
 					else
 					{
-						q2StoreNextQuestion = 'q4';
+						q2StoreNextQuestion = 'q3';
 						showSubQuestion('q2d');
 					}
 				}
@@ -643,19 +643,19 @@
 		{
 			previousAnswers = [];
 			
-			previousAnswers.push(o2);					//0
-			previousAnswers.push(wheelchairToFrom);		//1
-			previousAnswers.push(bariatricWheelchair);	//2
-			previousAnswers.push(bariatric);			//3
-			previousAnswers.push(carryChair);			//4
-			previousAnswers.push(bringWheelchair);		//5
-			previousAnswers.push(steps);				//6
-			previousAnswers.push(q2StoreNextQuestion);	//7
-			previousAnswers.push(howMuchOxygen);		//8
-			previousAnswers.push(weight);				//9
-			previousAnswers.push(travelsInWheelchair);	//10
-			previousAnswers.push(stretcher);			//11
-			previousAnswers.push(wheelchairVehicle);	//12
+			previousAnswers.push(o2);
+			previousAnswers.push(wheelchairToFrom);
+			previousAnswers.push(bariatricWheelchair);
+			previousAnswers.push(bariatric);
+			previousAnswers.push(carryChair);
+			previousAnswers.push(bringWheelchair);
+			previousAnswers.push(steps);
+			previousAnswers.push(q2StoreNextQuestion);
+			previousAnswers.push(howMuchOxygen);
+			previousAnswers.push(weight);
+			previousAnswers.push(travelsInWheelchair);
+			previousAnswers.push(stretcher);
+			previousAnswers.push(wheelchairVehicle);
 			
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
@@ -716,21 +716,21 @@
 			
 			document.getElementById('q1Dropdown').selectedIndex = 0;
 			document.getElementById('q1aDropdown').selectedIndex = 0;
-			document.getElementById('q1bInputBox').value = 4;		
+			document.getElementById('q1bInputBox').value = "";		
 			document.getElementById('q2Dropdown').selectedIndex = 0;
 			document.getElementById('q2aDropdown').selectedIndex = 0;
 			document.getElementById('q2bDropdown').selectedIndex = 0;
 			document.getElementById('q2cDropdown').selectedIndex = 0;
 			document.getElementById('q2dDropdown').selectedIndex = 0;
-			document.getElementById('q2eInputBox').value = 114;		
+			document.getElementById('q2eInputBox').value = "";		
 			document.getElementById('q3Dropdown').selectedIndex = 0;		
 			document.getElementById('q4Dropdown').selectedIndex = 0;		
 			document.getElementById('q5Dropdown').selectedIndex = 0;
 			document.getElementById('q5aDropdown').selectedIndex = 0;
 			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5cInputBox').value = 114;
+			document.getElementById('q5cInputBox').value = "";		
 			document.getElementById('q6Dropdown').selectedIndex = 0;
-			document.getElementById('q6aInputBox').value = 114;
+			document.getElementById('q6aInputBox').value = "";
 			
 			
 			if(useCookies)
