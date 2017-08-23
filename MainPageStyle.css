@@ -53,6 +53,9 @@ body{
 	padding: 0;
 	vertical-align: middle;
 }
+#g4slogo:hover{
+	opacity: 0.4;
+}
 .tab{
 	border-top-left-radius: 4px;
 	border-top-right-radius: 4px;
