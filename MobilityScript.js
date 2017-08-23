@@ -643,19 +643,19 @@
 		{
 			previousAnswers = [];
 			
-			previousAnswers.push(o2);
-			previousAnswers.push(wheelchairToFrom);
-			previousAnswers.push(bariatricWheelchair);
-			previousAnswers.push(bariatric);
-			previousAnswers.push(carryChair);
-			previousAnswers.push(bringWheelchair);
-			previousAnswers.push(steps);
-			previousAnswers.push(q2StoreNextQuestion);
-			previousAnswers.push(howMuchOxygen);
-			previousAnswers.push(weight);
-			previousAnswers.push(travelsInWheelchair);
-			previousAnswers.push(stretcher);
-			previousAnswers.push(wheelchairVehicle);
+			previousAnswers.push(o2);					//0
+			previousAnswers.push(wheelchairToFrom);		//1
+			previousAnswers.push(bariatricWheelchair);	//2
+			previousAnswers.push(bariatric);			//3
+			previousAnswers.push(carryChair);			//4
+			previousAnswers.push(bringWheelchair);		//5
+			previousAnswers.push(steps);				//6
+			previousAnswers.push(q2StoreNextQuestion);	//7
+			previousAnswers.push(howMuchOxygen);		//8
+			previousAnswers.push(weight);				//9
+			previousAnswers.push(travelsInWheelchair);	//10
+			previousAnswers.push(stretcher);			//11
+			previousAnswers.push(wheelchairVehicle);	//12
 			
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
@@ -767,12 +767,12 @@
 			updateRequirements("bringWheelchair", 	previousAnswers[5] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
-			q2StoreNextQuestion = 					previousAnswers[7] == "true";
-			howMuchOxygen = 						previousAnswers[8] == "true";
-			weight = 								previousAnswers[9] == "true";
+			q2StoreNextQuestion = 					previousAnswers[7];
+			howMuchOxygen = 						previousAnswers[8];
+			weight = 								previousAnswers[9];
 			travelsInWheelchair = 					previousAnswers[10] == "true";
 			stretcher = 							previousAnswers[11] == "true";
-			wheelschairVehicle = 					previousAnswers[12] == "true";
+			wheelchairVehicle = 					previousAnswers[12] == "true";
 			
 			
 			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[13];
