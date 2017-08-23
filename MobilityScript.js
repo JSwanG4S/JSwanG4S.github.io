@@ -749,12 +749,12 @@
 			}
 			
 			hideEverything();
+			window.alert("Cookies saved");
 		}
 	}
 	
 	function restoreAssessment() {
 		if(document.getElementById('q1Dropdown').selectedIndex == 0) {
-			
 			var theCookie = getCookie("allValues");
 			
 			previousAnswers = theCookie.split('|');
@@ -810,6 +810,7 @@
 			document.getElementById('q5c').style.visibility = 		previousAnswers[43];
 			document.getElementById('q6').style.display = 			previousAnswers[44];
 			document.getElementById('q6a').style.visibility = 		previousAnswers[45];
+			window.alert("Cookies restored");
 		}
 	}
 	
