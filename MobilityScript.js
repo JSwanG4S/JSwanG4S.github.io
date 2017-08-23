@@ -126,7 +126,7 @@
 						}
 						else
 						{
-							q2StoreNextQuestion = 'q3';
+							q2StoreNextQuestion = 'q4';
 							showSubQuestion('q2d');
 						}
 					}
@@ -140,7 +140,7 @@
 					}
 					else
 					{
-						q2StoreNextQuestion = 'q3';
+						q2StoreNextQuestion = 'q4';
 						showSubQuestion('q2d');
 					}
 				}
