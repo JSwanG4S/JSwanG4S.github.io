@@ -749,12 +749,12 @@
 			}
 			
 			hideEverything();
-			window.alert("Cookies saved");
 		}
 	}
 	
 	function restoreAssessment() {
 		if(document.getElementById('q1Dropdown').selectedIndex == 0) {
+			
 			var theCookie = getCookie("allValues");
 			
 			previousAnswers = theCookie.split('|');
@@ -767,12 +767,12 @@
 			updateRequirements("bringWheelchair", 	previousAnswers[5] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
-			q2StoreNextQuestion = 					previousAnswers[7];
-			howMuchOxygen = 						previousAnswers[8];
-			weight = 								previousAnswers[9];
+			q2StoreNextQuestion = 					previousAnswers[7] == "true";
+			howMuchOxygen = 						previousAnswers[8] == "true";
+			weight = 								previousAnswers[9] == "true";
 			travelsInWheelchair = 					previousAnswers[10] == "true";
 			stretcher = 							previousAnswers[11] == "true";
-			wheelchairVehicle = 					previousAnswers[12] == "true";
+			wheelschairVehicle = 					previousAnswers[12] == "true";
 			
 			
 			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[13];
@@ -810,7 +810,6 @@
 			document.getElementById('q5c').style.visibility = 		previousAnswers[43];
 			document.getElementById('q6').style.display = 			previousAnswers[44];
 			document.getElementById('q6a').style.visibility = 		previousAnswers[45];
-			window.alert("Cookies restored");
 		}
 	}
 	
