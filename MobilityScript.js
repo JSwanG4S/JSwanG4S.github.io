@@ -732,9 +732,9 @@
 			document.getElementById('q6Dropdown').selectedIndex = 0;
 			document.getElementById('q6aInputBox').value = 114;
 			
-			var saver = document.cookie;
 			if(useCookies)
 			{
+				allValues = "";
 				for(iterator = 0; iterator < previousAnswers.length; iterator++)
 				{
 					allValues += previousAnswers[iterator] + "|";
@@ -747,8 +747,6 @@
 				now.setTime(time);
 				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
-			var comparer = document.cookie;
-			window.alert("Old cookie: " + saver + ", new cookie: " + comparer);
 			
 			hideEverything();
 		}
