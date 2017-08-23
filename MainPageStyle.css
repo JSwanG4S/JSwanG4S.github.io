@@ -28,6 +28,8 @@ body{
 	background-color: white;
 	font-weight: bold;
 	
+	cursor: default;
+	
 	z-index: 10;
 }
 
