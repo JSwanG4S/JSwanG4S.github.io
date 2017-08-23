@@ -1,15 +1,16 @@
+var i;
+var activeAssessment = "";
 
-var activeTab = "MobilityAssessment";
-
-function ChangeTab(tab)
+function ChangeTab(assessment)
 {
-	if(tab != activeTab)
+	if(assessment != activeAssessment)
 	{
-		activeTab = tab;
-		document.getElementById("assessmentFrame").contentWindow.restartAssessment();
+		activeAssessment = assessment;
+		//document.getElementById(tab + "Frame").contentWindow.restartAssessment();
 		ClearActiveTabs();
-		document.getElementById("assessmentFrame").src = tab + ".html";
-		document.getElementById(tab + 'Tab').classList.add("tab_selected");
+		ClearActiveFrames();
+		document.getElementById(assessment + "Frame").style.display = "block";
+		document.getElementById(assessment + 'Tab').classList.add("tab_selected");
 	}
 }
 
@@ -17,9 +18,17 @@ function ChangeTab(tab)
 function ClearActiveTabs()
 {
 	var tabs = document.getElementsByClassName("tab");
-	var i;
 	for(i = 0; i < tabs.length; i++)
 	{
 		tabs[i].classList.remove("tab_selected");
+	}
+}
+
+function ClearActiveFrames()
+{
+	var frames = document.getElementsByClassName("frame");
+	for(i = 0; i < frames.length; i++)
+	{
+		frames[i].style.display = "none";
 	}
 }

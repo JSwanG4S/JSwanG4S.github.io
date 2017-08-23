@@ -12,7 +12,7 @@
 	</head>
 
 
-	<body>
+	<body onload="ChangeTab('MobilityAssessment')">
 		<ul id="navbar">
 			<li><img src="Logo.png" id="g4slogo" class="cant_select" alt="G4S" /></li>
 			<li id="MobilityAssessmentTab" onclick="ChangeTab('MobilityAssessment')" class="tab cant_select tab_selected"><a>Mobility Assessment</a></li>
@@ -20,8 +20,9 @@
 		</ul>
 		
 		
-		<iframe id="assessmentFrame" src="MobilityAssessment.html"/>
+		<!--<iframe id="assessmentFrame" src="MobilityAssessment.html"/> -->
+		<iframe id="MobilityAssessmentFrame" class="frame" style="display: none" src="MobilityAssessment.html"></iframe>
+		<iframe id="MentalHealthAssessmentFrame" class="frame" style="display: none" src="MentalHealthAssessment.html"></iframe>
 		
 	</body>
-
 </html>
