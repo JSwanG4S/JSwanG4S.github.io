@@ -459,7 +459,7 @@
 			requirements = requirements.concat("<p>Needs " + (bariatric ? "Bariatric " : "") + "Wheelchair on arrival</p>");			
 		}
 		if(weight > -1){
-			additionalDetails = additionalDetails.concat("<p>Weight: " + weight + "kgs</p>");
+			additionalDetails = additionalDetails.concat("<p>Weight: " + weight + "kg</p>");
 		}
 		if(steps)
 		{
