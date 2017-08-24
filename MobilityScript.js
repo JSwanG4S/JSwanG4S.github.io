@@ -772,7 +772,7 @@
 			weight = 								previousAnswers[9];
 			travelsInWheelchair = 					previousAnswers[10] == "true";
 			stretcher = 							previousAnswers[11] == "true";
-			wheelschairVehicle = 					previousAnswers[12] == "true";
+			wheelchairVehicle = 					previousAnswers[12] == "true";
 			
 			
 			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[13];
