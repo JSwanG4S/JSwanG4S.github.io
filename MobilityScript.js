@@ -767,9 +767,9 @@
 			updateRequirements("bringWheelchair", 	previousAnswers[5] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
-			q2StoreNextQuestion = 					previousAnswers[7] == "true";
-			howMuchOxygen = 						previousAnswers[8] == "true";
-			weight = 								previousAnswers[9] == "true";
+			q2StoreNextQuestion = 					previousAnswers[7];
+			howMuchOxygen = 						previousAnswers[8];
+			weight = 								previousAnswers[9];
 			travelsInWheelchair = 					previousAnswers[10] == "true";
 			stretcher = 							previousAnswers[11] == "true";
 			wheelschairVehicle = 					previousAnswers[12] == "true";
