@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	
 	<head>
+		<link rel="stylesheet" type="text/css" href="MainStyle.css" />
+		<link rel="stylesheet" type="text/css" href="StyleColours.css" />
 		<link rel="stylesheet" type="text/css" href="MobilityStyle.css" />
 
 		<script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" type="text/javascript"></script>
@@ -55,7 +57,7 @@
 		</div>
 		
 		
-		<div id="infoFloat">
+		<div id="infoFloat" class="cant_select">
 			<div id="infoEquipment" class="infoSection"><h1>Equipment</h1>
 				<div id="infoO2" class="infoValue" onclick="xupdateEquipment('o2', !o2)">O2</div>
 				<div id="infoWheelchairToFrom" class="infoValue" onclick="xupdateEquipment('wheelchairToFrom', !wheelchairToFrom)">Wheelchair To/From</div>
@@ -75,7 +77,7 @@
 		
 		
 		<h1> PTS Mobility Assessment </h1>
-
+		
 		<div class="questionboxes">
 
 			<div id="q1" class="question"> 1. Does the patient require oxygen?
