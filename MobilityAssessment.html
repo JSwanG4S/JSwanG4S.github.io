@@ -60,6 +60,11 @@
 		
 		
 		<div id="infoFloat" class="cant_select">
+		
+			<div id="infoConversion"><h1>Conversion</h1>
+			<p><input id="convertLb" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/>lb
+			<input id="convertKg" type="number" value="0" min="0" onkeyup="updateLb()" onchange="updateLb()"/>kg</p></div>
+			
 			<div id="infoEquipment" class="infoSection"><h1>Equipment</h1>
 				<div id="infoO2" class="infoValue" onclick="xupdateEquipment('o2', !o2)">O2</div>
 				<div id="infoWheelchairToFrom" class="infoValue" onclick="xupdateEquipment('wheelchairToFrom', !wheelchairToFrom)">Wheelchair To/From</div>
@@ -71,15 +76,12 @@
 				<div id="infoCarryChair" class="infoValue" onclick="xupdateRequirements('carryChair', !carryChair)">Carry Chair</div>
 				<div id="infoBringWheelchair" class="infoValue" onclick="xupdateRequirements('bringWheelchair', !bringWheelchair)">Bring Wheelchair</div>
 			</div>
+			
 			<br />
+			
 			<button id="cookieButton" onclick="enableCookies()" style="margin: 3px; width: 70px">Enable Cookies</button>
 			<button id="restartButton" onclick="restartAssessment()" style="margin: 3px; width: 70px; display: none;"> Restart </button>
 			<button id="restoreButton" onclick="restoreAssessment()" style="margin: 3px; width: 70px; display: none;"> Restore </button>
-		</div>
-		
-		<div id="conversionFloat">
-			<p><input id="convertLb" type="number" value="0" min="0" onkeyup="updateKg()" onchange="updateKg()"/>lb</p>
-			<p><input id="convertKg" type="number" value="0" min="0" onkeyup="updateLb()" onchange="updateLb()"/>kg</p>
 		</div>
 		
 		<h1> PTS Mobility Assessment </h1>

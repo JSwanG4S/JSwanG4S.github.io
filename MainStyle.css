@@ -82,7 +82,7 @@ h3
 	position: fixed;
 	
 	left: 0px;
-	top: 20%;
+	top: 15%;
 	
 	float:left;
 	
@@ -92,7 +92,7 @@ h3
 	font-size: 14px;
 	
 	width: 120px;
-	max-height: 400px;
+	max-height: 500px;
 	overflow: auto;
 	
 	background-color: white;
@@ -117,6 +117,17 @@ h3
 	background-color: #DDDDDD;
 	color: grey;
 	cursor: pointer;
+}
+
+#infoFloat input{
+	position: relative;
+	left: 10px;
+	margin-bottom: 5px;
+	width: 70px;
+	margin-right: 20px;
+}
+#infoFloat #infoConversion{
+	text-align: left;
 }
 
 .questionboxes
