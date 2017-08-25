@@ -5,3 +5,26 @@ body {
 .question{
 	border-color: var(--c_mobility_secondary);
 }
+
+#conversionFloat{
+	position: fixed;
+	top: 0;
+	right: 0;
+	max-width: 200px;
+	max-height: 200px;
+	
+	padding-left: 20px;
+	padding-right: 10px;
+	
+	background-color: white;
+	
+	border: 2px solid #90caf9;
+	border-bottom-left-radius: 25px;
+	border-right-width: 0;
+	border-top-width: 0;
+}
+
+#conversionFloat input{
+	width: 100px;
+	margin-right: 10px;
+}

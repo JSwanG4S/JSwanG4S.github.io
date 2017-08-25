@@ -6,7 +6,7 @@ function ChangeTab(assessment)
 	if(assessment != activeAssessment)
 	{
 		activeAssessment = assessment;
-		document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
+		//document.getElementById(assessment + "Frame").contentWindow.restartAssessment();
 		ClearActiveTabs();
 		ClearActiveFrames();
 		document.getElementById(assessment + "Frame").style.display = "block";
@@ -31,4 +31,9 @@ function ClearActiveFrames()
 	{
 		frames[i].style.display = "none";
 	}
+}
+
+function DarkenTab()
+{
+	
 }

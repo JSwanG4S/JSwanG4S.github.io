@@ -477,11 +477,43 @@
 		}
 		
 		document.getElementById("journeyNotesDiv").innerHTML = additionalDetails;
+		document.getElementById("mobilityDescription").innerHTML = getMobilityDescription(mobility);
 		document.getElementById("requirementsDiv").innerHTML = requirements;
 		document.getElementById("equipmentDiv").innerHTML = equipment ;
 		
 	}
 	
+	function getMobilityDescription(mobility){
+		switch(mobility)
+		{
+			case 'EMT':
+				return "Patient requires specialist care";
+			
+			case 'Walker Car':
+				return "Walking patient. Can mobilise and travel by car";
+			
+			case 'Seated 1 Man':
+				return "Can transfer with the assistance one staff member and does not require conveyance over 2 or more steps at pick up/drop off location.";
+			
+			case 'Seated 2 Man':
+				return "Requires 2 staff to transfer and requires conveyance over 2 or more steps at the pick up/drop off location. Non- self caring patients who require oxygen also need to be booked as this mobility."
+			
+			case 'Wheelchair 1 Man':
+				return "Requires one staff member to assist at pick up/drop off location and travels in their own wheelchair";
+			
+			case 'Wheelchair 2 Man':
+				return "Requires two staff members to assist at pick up and/or drop off location and travels in their own wheelchair";
+			
+			case 'Stretcher':
+				return "Patient is bed bound and requires a stretcher to be conveyed";
+			
+			case 'Bariatric Stretcher':
+				return "Patient requires the use of specialist lifting or carrying equipment, and/or the assistance of more than 2 crew";
+			
+			default: return "null";
+		}
+		
+	}
 	
 	function hideEverything() {
 		
@@ -849,4 +881,12 @@
 				return c.substring(cookieName.length, c.length);
 			}
 		}
+	}
+	
+	
+	function updateKg(){
+		document.getElementById("convertKg").value = Math.round(document.getElementById("convertLb").value * 0.453592);
+	}
+	function updateLb(){
+		document.getElementById("convertLb").value = Math.round(document.getElementById("convertKg").value / 0.453592);
 	}
