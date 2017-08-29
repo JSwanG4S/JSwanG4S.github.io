@@ -5,3 +5,7 @@ body {
 .question{
 	border-color: var(--c_mobility_secondary);
 }
+
+.smallConvert{
+	max-width: 20px;
+}

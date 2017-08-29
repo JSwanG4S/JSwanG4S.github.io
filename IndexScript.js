@@ -32,8 +32,3 @@ function ClearActiveFrames()
 		frames[i].style.display = "none";
 	}
 }
-
-function DarkenTab()
-{
-	
-}

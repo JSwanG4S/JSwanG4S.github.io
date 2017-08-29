@@ -9,6 +9,10 @@
 	//	CarryChair
 	//	BringWheelchair
 	
+	const maxWheelchairWeight= 300; //kg
+	const maxCarryWeight= 158; //kg, 25st
+	const bariatricWeight = 114; //kg, 18st
+	
 	var iterator = 0;
 	
 	var useCookies = false;
@@ -37,7 +41,7 @@
 	var wheelchairVehicle = false;
 	
 	var weightAsked = false;
-
+	
 	function updateAnswers(sender) {
 		switch(sender)
 		{
@@ -194,12 +198,12 @@
 			case 'q2e':
 				
 				weight = document.getElementById('q2eInputBox').value;
-				if(weight >= 300)
+				if(weight >= maxWheelchairWeight)
 				{
 					updateRequirements('bariatric', true);
 					showReferToControlBox();
 				}
-				if(weight >= 114)
+				if(weight >= bariatricWeight)
 				{
 					updateRequirements('bariatric', true);
 					if(bringWheelchair)
@@ -257,7 +261,7 @@
 				
 				if(document.getElementById('q5Dropdown').value == "Yes"){
 					
-					if(weight > 158){
+					if(weight > maxCarryWeight){
 						showReferToControlBox();
 					}
 					else {
@@ -299,8 +303,11 @@
 					}
 					else
 					{
-						updateRequirements('bariatric', true);
-						updateRequirements('carryChair', true);
+						if(weight >= bariatricWeight)
+						{
+							updateRequirements('bariatric', true);
+							updateRequirements('carryChair', true);
+						}
 						if(wheelchairToFrom)
 						{
 							if(wheelchairVehicle)
@@ -354,7 +361,7 @@
 				weightAsked = true;
 				weight = document.getElementById('q5cInputBox').value;
 				
-				if(weight > 158){
+				if(weight > maxCarryWeight){
 					showReferToControlBox();
 				}
 				else {
@@ -409,18 +416,17 @@
 			case 'q6a':
 				
 				weight = document.getElementById('q6aInputBox').value;
-				if(document.getElementById('q6aInputBox').value >= 114){
-					
+				if(document.getElementById('q6aInputBox').value >= maxCarryWeight)
+				{
+					showReferToControlBox();
+				}
+				else if(document.getElementById('q6aInputBox').value >= bariatricWeight){					
 					updateRequirements('bariatric', true);
-					
 					suggestMobility('Bariatric Stretcher');
-					
 				}
 				else{
-					
 					updateRequirements('bariatric', false);
 					suggestMobility('Stretcher');
-					
 				}
 				
 				break;
@@ -489,7 +495,7 @@
 			case 'EMT':
 				return "Patient requires specialist care";
 			
-			case 'Walker Car':
+			case 'Walker car':
 				return "Walking patient. Can mobilise and travel by car";
 			
 			case 'Seated 1 Man':
@@ -667,7 +673,7 @@
 				break;
 		}
 	}
-
+	
 	
 	function restartAssessment() {
 		
@@ -754,15 +760,15 @@
 			document.getElementById('q2bDropdown').selectedIndex = 0;
 			document.getElementById('q2cDropdown').selectedIndex = 0;
 			document.getElementById('q2dDropdown').selectedIndex = 0;
-			document.getElementById('q2eInputBox').value = 114;		
+			document.getElementById('q2eInputBox').value = bariatricWeight;		
 			document.getElementById('q3Dropdown').selectedIndex = 0;		
 			document.getElementById('q4Dropdown').selectedIndex = 0;		
 			document.getElementById('q5Dropdown').selectedIndex = 0;
 			document.getElementById('q5aDropdown').selectedIndex = 0;
 			document.getElementById('q5bDropdown').selectedIndex = 0;
-			document.getElementById('q5cInputBox').value = 114;
+			document.getElementById('q5cInputBox').value = bariatricWeight;
 			document.getElementById('q6Dropdown').selectedIndex = 0;
-			document.getElementById('q6aInputBox').value = 114;
+			document.getElementById('q6aInputBox').value = bariatricWeight;
 			
 			if(useCookies)
 			{
@@ -885,8 +891,14 @@
 	
 	
 	function updateKg(){
-		document.getElementById("convertKg").value = Math.round(document.getElementById("convertLb").value * 0.453592);
+		var stToLbs = document.getElementById("convertSt").value * 14 * 0.453592;
+		document.getElementById("convertKg").value = Math.round((document.getElementById("convertLb").value * 0.453592) + stToLbs);
 	}
 	function updateLb(){
-		document.getElementById("convertLb").value = Math.round(document.getElementById("convertKg").value / 0.453592);
+		var totalLbs = Math.round(document.getElementById("convertKg").value / 0.453592);
+		var lbs = totalLbs % 14;
+		var st = Math.round((totalLbs / 14)-0.5);
+		
+		document.getElementById("convertSt").value = st;
+		document.getElementById("convertLb").value = lbs;
 	}

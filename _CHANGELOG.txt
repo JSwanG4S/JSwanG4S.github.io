@@ -1,0 +1,18 @@
+IndexStyle
+	Tabs no longer collapse when the window is narrowed (white-space: nowrap)
+
+_README
+	Added title
+	Renamed to _README
+
+index
+	Logo now points to _README
+
+_SPECIFICATION
+	Contains all possible outcomes of the assessment
+
+MobilityScript
+	Refactored magic numbers for maxWheelchairWeight, maxCarryWeight and bariatricWeight to their own consts
+	6a now refers to control if weight is over maxCarryWeight
+	Fixed mobility description not appearing for Walker Car
+	Conversion now calculates stones along with pounds.
