@@ -6,7 +6,7 @@ O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> C
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Has stairs -> No turns in stairs -> Seated 2 Man
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> No stairs -> Seated 2 Man
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone-> Has stairs -> Turns in stairs -> RISK ASSESSMENT
-O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone-> Has stairs -> No turns in stairs -> Seated 2 Man
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone-> Has stairs -> No turns in stairs -> Seated 2 Man (TODO 2)
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone-> No stairs -> Seated 2 Man
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Over 300kg -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Over 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
@@ -15,7 +15,13 @@ O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> C
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> Has stairs -> No turns in stairs -> Seated 2 Man
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> No stairs -> Seated 2 Man
-O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 300kg -> RISK ASSESSMENT
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Has stairs -> No turns in stairs -> Wheelchair 2 Man
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> No stairs -> Wheelchair 2 Man
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Has stairs -> No turns in stairs -> Wheelchair 2 Man
+O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> No stairs -> Wheelchair 2 Man
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 300kg -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 18 stone -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 18 stone -> Has stairs -> No turns in stairs -> Wheelchair 2 Man
@@ -26,17 +32,17 @@ O2 -> Less than 4 litres -> In a wheelchair to and from -> Can't transfer out ->
 O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Over 300kg -> RISK ASSESSMENT
 O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Over 18 stone -> Has to lie flat -> Bariatric Stretcher
-O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Over 18 stone -> Doesn't have to lie flat -> Seated 2 Man
-O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Less than 18 stone -> Has to lie flat -> Weight >= 114 -> Bariatric Stretcher (See TODO)
+O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Over 18 stone -> Doesn't have to lie flat -> Seated 2 Man (TODO 3)
+O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Less than 18 stone -> Has to lie flat -> Weight >= 114 -> Bariatric Stretcher
 O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Less than 18 stone -> Has to lie flat -> Weight < 114 -> Stretcher
 O2 -> Less than 4 litres -> No wheelchair -> Has stairs -> No turns in stairs -> Less than 18 stone -> Doesn't have to lie flat -> Seated 2 Man
 O2 -> Less than 4 litres -> No wheelchair -> No stairs -> Has to lie flat -> Weight >= 114 -> Bariatric Stretcher
 O2 -> Less than 4 litres -> No wheelchair -> No stairs -> Has to lie flat -> Weight < 114 -> Stretcher
-O2 -> Less than 4 litres -> No wheelchair -> No stairs -> Doesn't have to lie flat -> Seated 2 Man
+O2 -> Less than 4 litres -> No wheelchair -> No stairs -> Doesn't have to lie flat -> Seated 2 Man (TODO 4)
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 300kg -> RISK ASSESSMENT
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Can use only 1 person's assistance -> Seated 1 Man
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
-No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> No turns in stairs -> Seated 2 Man
+No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> No turns in stairs -> Seated 2 Man (TODO 5)
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Over 18 stone -> Can't use only 1 person's assistance -> No stairs -> Seated 2 Man
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone -> Can use only 1 person's assistance -> Seated 1 Man
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can provide own wheelchair -> Less than 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
@@ -51,7 +57,15 @@ No O2 -> In a wheelchair to and from -> Can transfer out -> Can't provide own wh
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> Can't use only 1 person's assistance -> Has stairs -> No turns in stairs -> Seated 2 Man
 No O2 -> In a wheelchair to and from -> Can transfer out -> Can't provide own wheelchair -> Less than 18 stone -> Can't use only 1 person's assistance -> No stairs -> Seated 2 Man
-No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 300kg -> RISK ASSESSMENT
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Can use only 1 person's assistance -> Wheelchair 1 Man
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> No turns in stairs -> Wheelchair 2 Man
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Over 18 stone -> Can't use only 1 person's assistance -> No stairs -> Wheelchair 2 Man
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Can use only 1 person's assistance -> Wheelchair 1 Man
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Can't use only 1 person's assistance -> Has stairs -> No turns in stairs -> Wheelchair 2 Man
+No O2 -> In a wheelchair to and from -> Can't transfer out -> Electric Wheelchair -> CONSULT CONTROL -> Less than 18 stone -> Can't use only 1 person's assistance -> No stairs -> Wheelchair 2 Man
 No O2 -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 300kg -> RISK ASSESSMENT
 No O2 -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 18 stone -> Can use only 1 person's assistance -> Wheelchair 1 Man
 No O2 -> In a wheelchair to and from -> Can't transfer out -> Manual Wheelchair -> Over 18 stone -> Can't use only 1 person's assistance -> Has stairs -> Turns in stairs -> RISK ASSESSMENT

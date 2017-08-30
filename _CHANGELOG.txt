@@ -1,18 +1,18 @@
-IndexStyle
-	Tabs no longer collapse when the window is narrowed (white-space: nowrap)
-
-_README
-	Added title
-	Renamed to _README
-
 index
-	Logo now points to _README
-
-_SPECIFICATION
-	Contains all possible outcomes of the assessment
+	Removed archaic comments
 
 MobilityScript
-	Refactored magic numbers for maxWheelchairWeight, maxCarryWeight and bariatricWeight to their own consts
-	6a now refers to control if weight is over maxCarryWeight
-	Fixed mobility description not appearing for Walker Car
-	Conversion now calculates stones along with pounds.
+	Now shows the next question after the user continues through the electric wheelchair prompt
+	Highlighting a question has been moved to a new function, highlightQuestion(question)
+	Asks the user to confirm weight if they have said the patient is over 114kg then the input is less
+	Asks the user to confirm weight on q6a if they have said the patient is less than 114kg then enters a weight greater than 114kg
+	Refer to Control modal now displays the reason for referral
+	Updated most Refer to Control calls with reasons
+
+_TODO
+	Added reference numbers
+	Updated
+
+_SPECIFICATION
+	Updated for MobilityScript changes
+	Specs are labelled if they are referred to by a TODO

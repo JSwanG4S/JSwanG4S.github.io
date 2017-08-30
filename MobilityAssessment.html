@@ -25,7 +25,7 @@
 		<div id="modalOverlay">
 			<div id="suggestionBox" class="modalBox">
 				<h3>Suggested mobility: <span id="suggestion">unknown</span></h3>
-				<label id="mobilityDescription">mobility description</label>
+				<label id="mobilityDescription">null</label>
 				
 				<h4>Equipment</h4>
 					<div id="equipmentDiv"> None </div>
@@ -43,8 +43,8 @@
 				</p>
 			</div>
 			<div id="referToControlBox" class="modalBox">
-				<h3>This journey may require a risk assessment</h3>
-				<h4>Please refer to control</h4>				
+				<h3>This journey may require a risk assessment - please refer to control</h3>
+				<h4 id="referReason">reason</h4>
 				<br />
 				<p>
 					<button id="referConfirmButton" onclick="restartAssessment()">OK</button>
@@ -55,6 +55,17 @@
 				<h3>Some electric wheelchairs cannot be taken on our vehicles</h3>
 				<h4>Please contact control and provide details of the wheelchair to confirm we are able to transport the patient</h4>
 				<button id="wheelchairContinueButton" onclick="hideWheelchairCheckBox();if(needsOxygen){showQuestion('q5');}else{showQuestion('q4');}">Continue</button>
+			</div>
+			<div id="weightConfirmBox" class="modalBox">
+				<h3>Please confirm the patient's weight</h3>
+				<h4>The weight you have entered is less than 114kg</h4>
+				<button id="weightConfirmContinueButton" onclick="confirmWeight('confirm')">Confirm</button>
+			</div>
+			<div id="weightContradictionBox" class="modalBox">
+				<h3>Please confirm the patient's weight</h3>
+				<h4>The weight you have entered is more than 114kg, but you have already said the patient is less than 114kg</h4>
+				<p><button id="weightContradictionContinueButton" onclick="hideWeightContradictionBox(); weightAsked = false; updateAnswers('q6a');">Confirm</button>
+				<button id="weightContradictionReturnButton" onclick="hideWeightContradictionBox(); showSubquestion('q6a');">Return</button></p>
 			</div>
 		</div>
 		

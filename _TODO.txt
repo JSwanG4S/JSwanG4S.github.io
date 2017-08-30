@@ -1,10 +1,6 @@
-Self administered oxygen can be put in a Walker Car
-Change ~5a to read 'Does the patient need to be carried down the stairs' if they aren't in a wheelchair (otherwise assumed)
-Ask user to confirm when bariatric weight input boxes are less than 114kg
-Ask user to confirm if answer to 6a is greater than 18 stone when 5b is answered as no (see spec 28 + 68)
-Confirm result for spec 27 - Bariatric and needs carrying
-Confirm result for spec 33 - Seated 2 Man description says requires conveyance over stairs
-Confirm result for spec 37 - Possibly redundant 'Wheel Chair to/from' when the patient also needs a carry chair
-Show next question after user acknowledges asking control when patient uses electric wheelchair (spec 16 + 52)
-Fix ActiveX prompt for IE
-Add stone input for conversion
+1: Self administered oxygen can be put in a Walker Car
+2: Change ~5a to read 'Does the patient need to be carried down the stairs' if they aren't in a wheelchair (otherwise assumed)
+3: Confirm result for spec 35 - Bariatric and needs carrying
+4: Confirm result for spec 41 - Seated 2 Man description says requires conveyance over stairs (may be correct if O2 patient is self-medicated)
+5: Confirm result for spec 45 - Possibly redundant 'Wheel Chair to/from' when the patient also needs a carry chair
+6: Remove wheelchair to/from for spec 74
