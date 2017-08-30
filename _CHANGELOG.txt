@@ -1,18 +1,2 @@
-index
-	Removed archaic comments
-
-MobilityScript
-	Now shows the next question after the user continues through the electric wheelchair prompt
-	Highlighting a question has been moved to a new function, highlightQuestion(question)
-	Asks the user to confirm weight if they have said the patient is over 114kg then the input is less
-	Asks the user to confirm weight on q6a if they have said the patient is less than 114kg then enters a weight greater than 114kg
-	Refer to Control modal now displays the reason for referral
-	Updated most Refer to Control calls with reasons
-
-_TODO
-	Added reference numbers
-	Updated
-
-_SPECIFICATION
-	Updated for MobilityScript changes
-	Specs are labelled if they are referred to by a TODO
+MobilityAssessment
+	Changed ActiveX Prompt to reference enabling running scripts
