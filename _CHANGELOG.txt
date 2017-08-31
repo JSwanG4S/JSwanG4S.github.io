@@ -1,2 +1,20 @@
-MobilityAssessment
-	Changed ActiveX Prompt to reference enabling running scripts
+Added
+	Beta feedback label
+	Support for changing contract
+	Setup() function for loading the contract from cookies
+	Restarting/restoring the assessment now has some placeholders for future variables
+	User is asked to confirm if the amount of oxygen specified is less than the contract's minimum
+	New q1a - does the patient self-administer the oxygen
+
+Changed
+	MobilityAssessment onload functions have been moved to setup()
+	MobilityAssessment wording for scripts prompt
+	CSS for infoFloat has been moved from MainStyle to MobilityStyle
+	Wheelchair To/From is now set in q2b
+
+Fixed
+	Restoring the assessment now restores weightAsked
+
+Removed
+	Internet Explorer is no longer supported
+	Bring wheelchair requirement

@@ -22,6 +22,8 @@
 	var cookieDuration = 60; //minutes
 	
 	var o2 = false;
+	var selfAdministers = false;
+	
 	var wheelchairToFrom = false;
 	var bariatricWheelchair = false;
 	
@@ -39,6 +41,28 @@
 	
 	var weightAsked = false;
 	
+	var contract;
+	
+	
+	function setup() {
+		hideEverything();
+		checkCookies();
+		
+		if(useCookies) {
+			document.getElementById("contractSelect").selectedIndex = getCookie("contract");
+		}
+		else {
+			//fallback default
+			document.getElementById("contractSelect").selectedIndex = 0;
+			contract = "k&m";
+		}
+		
+		changeContract();
+		
+		//window.alert("Contract: " + contract);
+	}
+	
+	
 	function updateAnswers(sender) {
 		switch(sender)
 		{
@@ -55,36 +79,54 @@
 				
 				break;
 
-			case 'q1a':
+			case 'q1a': // self administers?
 				
 				if(document.getElementById('q1aDropdown').value == "Yes"){
-					showSubQuestion('q1b');
-					howMuchOxygen = 0;
+					selfAdministers = true;
+					showQuestion('q2');
 				}
 				else if(document.getElementById('q1aDropdown').value == "No"){
-					showQuestion('q2');
+					selfAdministers = false;
+					showSubQuestion('q1b');
+					howMuchOxygen = 0;
 				}
 				
 				break;
 
-			case 'q1b':
+			case 'q1b': // more than 4 litres?
 				
-				howMuchOxygen = document.getElementById('q1bInputBox').value;
+				if(document.getElementById('q1bDropdown').value == "Yes"){
+					showSubQuestion('q1c');
+				}
+				else if(document.getElementById('q1bDropdown').value == "No"){
+					showQuestion('q2');
+					howMuchOxygen = 0;
+				}
+				
+				break;
+
+			case 'q1c':
+				
+				howMuchOxygen = document.getElementById('q1cInputBox').value;
+				if(howMuchOxygen < contractOxygenMinimum())
+				{
+					showOxygenConfirmBox();
+					break;
+				}
+				
 				suggestMobility('EMT');
-				
 				break;
 
 				
 			case 'q2': //Will the patient need to be in a wheelchair to and from the vehicle?
 				
 				if(document.getElementById('q2Dropdown').value == "Yes"){
-					updateEquipment('wheelchairToFrom', true);
 					showSubQuestion('q2a');
 				}
 				else if(document.getElementById('q2Dropdown').value == "No"){
-					updateEquipment('wheelchairToFrom', false);
 					//Must be at least 2 man if the patient needs oxygen
-					if(o2)
+					// but if the patient self administers they can still go in a walker car or 1 man ambulance
+					if(o2 && !selfAdministers)
 					{
 						showQuestion('q5');
 					}
@@ -113,14 +155,14 @@
 			case 'q2b': //Will the patient provide their own wheelchair?
 				
 				if(document.getElementById('q2bDropdown').value == "Yes"){
-					updateRequirements('bringWheelchair', false);
+					updateEquipment('wheelchairToFrom', false);
 					if(wheelchairVehicle)
 					{
 						showSubQuestion('q2c');
 					}
 					else
 					{
-						if(o2)
+						if(o2 && !selfAdministers)
 						{
 							q2StoreNextQuestion = 'q5';
 							showSubQuestion('q2d');
@@ -133,8 +175,8 @@
 					}
 				}
 				else if(document.getElementById('q2bDropdown').value == "No"){
-					updateRequirements('bringWheelchair', true);
-					if(o2)
+					updateEquipment('wheelchairToFrom', true);
+					if(o2 && !selfAdministers)
 					{
 						q2StoreNextQuestion = 'q5';
 						showSubQuestion('q2d');
@@ -156,7 +198,7 @@
 				//Wheelchair vehicle may have been set to true by 2a
 				if(wheelchairVehicle)
 				{
-					if(o2)
+					if(o2 && !selfAdministers)
 					{
 						q2StoreNextQuestion = 'q5';
 						showSubQuestion('q2d');
@@ -449,7 +491,7 @@
 	
 	
 	function suggestMobility(mobility) {
-		document.getElementById('suggestion').innerHTML = mobility;
+		document.getElementById('suggestion').innerHTML = parseContractMobility(mobility);
 		showSuggestionBox();
 		
 		var additionalDetails = "";
@@ -457,11 +499,11 @@
 		var requirements = "";
 		
 		if(o2){
-			additionalDetails = additionalDetails.concat("<p>Requires O2" + ((howMuchOxygen == 0) ? " (less than 4 litres)" : " (" + howMuchOxygen + " litres)") + "</p>");
-			equipment = equipment.concat("<p>Oxygen req'd</p>");
+			additionalDetails = additionalDetails.concat("<p>" + (selfAdministers ? "Self administers O2":"Requires O2" + ((howMuchOxygen == 0) ? " (less than 4 litres)" : " (" + howMuchOxygen + " litres)") + "</p>"));
+			equipment = equipment.concat(selfAdministers?"<p>Oxygen Self Admin</p>":"<p>Oxygen req'd</p>");
 		}
 		if(wheelchairToFrom && !stretcher){
-			additionalDetails = additionalDetails.concat("<p>Wheelchair required to and from vehicle</p>");
+			additionalDetails = additionalDetails.concat("<p>" + (bariatric ? "Bariatric " : "") + "Wheelchair required to and from vehicle</p>");
 			equipment = equipment.concat("<p>Wheel Chair to/from</p>");
 		}
 		if(mobility == 'Bariatric Wheelchair'){
@@ -475,13 +517,12 @@
 			requirements = requirements.concat("<p>Requires Carry Chair</p>");
 		}
 		if(bringWheelchair && !stretcher){
-			requirements = requirements.concat("<p>Needs " + (bariatric ? "Bariatric " : "") + "Wheelchair on arrival</p>");			
+			//requirements = requirements.concat("<p>Needs " + (bariatric ? "Bariatric " : "") + "Wheelchair on arrival</p>");			
 		}
 		if(weight > -1){
 			additionalDetails = additionalDetails.concat("<p>Weight: " + weight + "kg</p>");
 		}
-		if(steps)
-		{
+		if(steps) {
 			additionalDetails = additionalDetails.concat("<p>Steps on property (if possible, add how many steps there are)</p>");
 		}
 		
@@ -530,35 +571,7 @@
 				return "Patient requires the use of specialist lifting or carrying equipment, and/or the assistance of more than 2 crew";
 			
 			default: return "null";
-		}
-		
-	}
-	
-	function hideEverything() {
-		
-		hideSuggestionBox();
-		hideReferToControlBox();
-		hideWheelchairCheckBox();
-		hideWeightConfirmBox();
-		hideWeightContradictionBox();
-		hideActiveXPrompt();
-		
-		document.getElementById('q1a').style.visibility = 'hidden';
-		document.getElementById('q1b').style.visibility = 'hidden';
-		document.getElementById('q2').style.display = 'none';
-		document.getElementById('q2a').style.visibility = 'hidden';
-		document.getElementById('q2b').style.visibility = 'hidden';
-		document.getElementById('q2c').style.visibility = 'hidden';
-		document.getElementById('q2d').style.visibility = 'hidden';
-		document.getElementById('q2e').style.visibility = 'hidden';
-		document.getElementById('q3').style.display = 'none';
-		document.getElementById('q4').style.display = 'none';
-		document.getElementById('q5').style.display = 'none';
-		document.getElementById('q5a').style.visibility = 'hidden';
-		document.getElementById('q5b').style.visibility = 'hidden';
-		document.getElementById('q5c').style.visibility = 'hidden';
-		document.getElementById('q6').style.display = 'none';
-		document.getElementById('q6a').style.visibility = 'hidden';
+		}		
 	}
 	
 	
@@ -574,6 +587,89 @@
 	function highlightQuestion(question) {
 		document.getElementById(question).className += " highlightQuestion";
 		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);		
+	}
+	
+	
+	function changeContract() {
+		contract = document.getElementById("contractSelect").value;
+		
+		if(useCookies)
+		{
+			document.cookie = "contract=" + document.getElementById("contractSelect").selectedIndex + "; expires=Tue, 19 Jan 2038 04:14:07 UTC" + "; path=/";
+		}
+		
+		document.getElementById("contractOxygenMinimum").innerHTML = contractOxygenMinimum();
+		document.getElementById("q1cInputBox").setAttribute('min', contractOxygenMinimum());
+		document.getElementById("q1cInputBox").setAttribute('value', contractOxygenMinimum());
+	}
+	
+	function contractOxygenMinimum() {
+		switch(contract)
+		{
+			case "k&m": return 4;
+			case "uclh": return 6;
+		}
+	}
+	
+	function contractIndexToText(index) {
+		switch(index)
+		{
+			case 0: return "k&m";
+			case 1: return "uclh";
+		}
+	}
+	
+	function parseContractMobility(mobility) {
+		switch(mobility)
+		{
+			case "Walker car":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "10 Car Suitable" : "null");
+			case "Bariatric Stretcher":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "BS Bariatric Amb Stretcher" : "null");
+			case "EMT":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "TC HDU Amb Chair" : "null");
+			case "Seated 1 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "11 Ambulance walker" : "null");
+			case "Seated 2 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "12 Amb 2 Crew for lifting" : "null");
+			case "Stretcher":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "32 Ambulance Stretcher" : "null");
+			case "Wheelchair 1 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "41 Amb 1 C travel own chair" : "null");
+			case "Wheelchair 2 Man":
+				return contract=="k&m" ? mobility : (contract=="uclh" ? "42 Amb 2 C travel own chair" : "null");
+			default: return "unknown mobility";
+		}
+	}
+	
+	
+	function hideEverything() {
+		
+		hideSuggestionBox();
+		hideReferToControlBox();
+		hideWheelchairCheckBox();
+		hideWeightConfirmBox();
+		hideWeightContradictionBox();
+		hideOxygenConfirmBox();
+		hideActiveXPrompt();
+		
+		document.getElementById('q1a').style.visibility = 'hidden';
+		document.getElementById('q1b').style.visibility = 'hidden';
+		document.getElementById('q1c').style.visibility = 'hidden';
+		document.getElementById('q2').style.display = 'none';
+		document.getElementById('q2a').style.visibility = 'hidden';
+		document.getElementById('q2b').style.visibility = 'hidden';
+		document.getElementById('q2c').style.visibility = 'hidden';
+		document.getElementById('q2d').style.visibility = 'hidden';
+		document.getElementById('q2e').style.visibility = 'hidden';
+		document.getElementById('q3').style.display = 'none';
+		document.getElementById('q4').style.display = 'none';
+		document.getElementById('q5').style.display = 'none';
+		document.getElementById('q5a').style.visibility = 'hidden';
+		document.getElementById('q5b').style.visibility = 'hidden';
+		document.getElementById('q5c').style.visibility = 'hidden';
+		document.getElementById('q6').style.display = 'none';
+		document.getElementById('q6a').style.visibility = 'hidden';
 	}
 	
 	
@@ -625,6 +721,15 @@
 	function hideWeightContradictionBox() {
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('weightContradictionBox').style.visibility = 'hidden';
+	}
+	
+	function showOxygenConfirmBox() {
+		document.getElementById('modalOverlay').style.visibility = 'visible';
+		document.getElementById('oxygenConfirmBox').style.visibility = 'visible';
+	}
+	function hideOxygenConfirmBox() {
+		document.getElementById('modalOverlay').style.visibility = 'hidden';
+		document.getElementById('oxygenConfirmBox').style.visibility = 'hidden';
 	}
 	
 	
@@ -728,10 +833,19 @@
 			previousAnswers.push(steps);				//6
 			previousAnswers.push(q2StoreNextQuestion);	//7
 			previousAnswers.push(howMuchOxygen);		//8
-			previousAnswers.push(weight);				//9
-			previousAnswers.push(travelsInWheelchair);	//10
-			previousAnswers.push(stretcher);			//11
-			previousAnswers.push(wheelchairVehicle);	//12
+			previousAnswers.push(selfAdministers);		//9
+			previousAnswers.push(weight);				//10
+			previousAnswers.push(weightAsked);			//11
+			previousAnswers.push(travelsInWheelchair);	//12
+			previousAnswers.push(stretcher);			//13
+			previousAnswers.push(wheelchairVehicle);	//14
+			
+			previousAnswers.push("placeholder");		//15
+			previousAnswers.push("placeholder");		//16
+			previousAnswers.push("placeholder");		//17
+			previousAnswers.push("placeholder");		//18
+			previousAnswers.push("placeholder");		//19
+			
 			
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
@@ -739,7 +853,7 @@
 			
 			updateRequirements("bariatric", false);
 			updateRequirements("carryChair", false);
-			updateRequirements("bringWheelchair", false);
+			//updateRequirements("bringWheelchair", false);
 		
 			steps = false;
 		
@@ -756,7 +870,8 @@
 			
 			previousAnswers.push(document.getElementById('q1Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q1aDropdown').selectedIndex);
-			previousAnswers.push(document.getElementById('q1bInputBox').value);		
+			previousAnswers.push(document.getElementById('q1bDropdown').selectedIndex);
+			previousAnswers.push(document.getElementById('q1cInputBox').value);
 			previousAnswers.push(document.getElementById('q2Dropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q2aDropdown').selectedIndex);
 			previousAnswers.push(document.getElementById('q2bDropdown').selectedIndex);
@@ -775,6 +890,7 @@
 			
 			previousAnswers.push(document.getElementById('q1a').style.visibility);
 			previousAnswers.push(document.getElementById('q1b').style.visibility);
+			previousAnswers.push(document.getElementById('q1c').style.visibility);
 			previousAnswers.push(document.getElementById('q2').style.display);
 			previousAnswers.push(document.getElementById('q2a').style.visibility);
 			previousAnswers.push(document.getElementById('q2b').style.visibility);
@@ -792,7 +908,8 @@
 			
 			document.getElementById('q1Dropdown').selectedIndex = 0;
 			document.getElementById('q1aDropdown').selectedIndex = 0;
-			document.getElementById('q1bInputBox').value = 4;		
+			document.getElementById('q1bDropdown').selectedIndex = 0;
+			document.getElementById('q1cInputBox').value = 4;
 			document.getElementById('q2Dropdown').selectedIndex = 0;
 			document.getElementById('q2aDropdown').selectedIndex = 0;
 			document.getElementById('q2bDropdown').selectedIndex = 0;
@@ -824,7 +941,7 @@
 				document.cookie = "allValues=" + allValues + "; expires=" + now.toUTCString() + "; path=/";
 			}
 			
-			hideEverything();
+			setup();
 		}
 	}
 	
@@ -845,47 +962,51 @@
 			steps = 								previousAnswers[6] == "true";
 			q2StoreNextQuestion = 					previousAnswers[7];
 			howMuchOxygen = 						previousAnswers[8];
-			weight = 								previousAnswers[9];
-			travelsInWheelchair = 					previousAnswers[10] == "true";
-			stretcher = 							previousAnswers[11] == "true";
-			wheelchairVehicle = 					previousAnswers[12] == "true";
+			selfAdministers = 						previousAnswers[9];
+			weight = 								previousAnswers[10];
+			weightAsked = 							previousAnswers[11] == "true";
+			travelsInWheelchair = 					previousAnswers[12] == "true";
+			stretcher = 							previousAnswers[13] == "true";
+			wheelchairVehicle = 					previousAnswers[14] == "true";
 			
 			
-			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[13];
-			document.getElementById('q1aDropdown').selectedIndex = 	previousAnswers[14];
-			document.getElementById('q1bInputBox').value = 			previousAnswers[15];			
-			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[16];
-			document.getElementById('q2aDropdown').selectedIndex = 	previousAnswers[17];
-			document.getElementById('q2bDropdown').selectedIndex = 	previousAnswers[18];
-			document.getElementById('q2cDropdown').selectedIndex = 	previousAnswers[19];
-			document.getElementById('q2dDropdown').selectedIndex = 	previousAnswers[20];
-			document.getElementById('q2eInputBox').value = 			previousAnswers[21];			
-			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[22];			
-			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[23];			
-			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[24];
-			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[25];
-			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[26];
-			document.getElementById('q5cInputBox').value = 			previousAnswers[27];			
-			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[28];
-			document.getElementById('q6aInputBox').value = 			previousAnswers[29];
+			document.getElementById('q1Dropdown').selectedIndex = 	previousAnswers[20];
+			document.getElementById('q1aDropdown').selectedIndex = 	previousAnswers[21];
+			document.getElementById('q1bDropdown').selectedIndex = 	previousAnswers[22];
+			document.getElementById('q1cInputBox').value = 			previousAnswers[23];
+			document.getElementById('q2Dropdown').selectedIndex = 	previousAnswers[24];
+			document.getElementById('q2aDropdown').selectedIndex = 	previousAnswers[25];
+			document.getElementById('q2bDropdown').selectedIndex = 	previousAnswers[26];
+			document.getElementById('q2cDropdown').selectedIndex = 	previousAnswers[27];
+			document.getElementById('q2dDropdown').selectedIndex = 	previousAnswers[28];
+			document.getElementById('q2eInputBox').value = 			previousAnswers[29];			
+			document.getElementById('q3Dropdown').selectedIndex = 	previousAnswers[30];			
+			document.getElementById('q4Dropdown').selectedIndex = 	previousAnswers[31];			
+			document.getElementById('q5Dropdown').selectedIndex = 	previousAnswers[32];
+			document.getElementById('q5aDropdown').selectedIndex = 	previousAnswers[33];
+			document.getElementById('q5bDropdown').selectedIndex = 	previousAnswers[34];
+			document.getElementById('q5cInputBox').value = 			previousAnswers[35];			
+			document.getElementById('q6Dropdown').selectedIndex = 	previousAnswers[36];
+			document.getElementById('q6aInputBox').value = 			previousAnswers[37];
 			
 			
-			document.getElementById('q1a').style.visibility = 		previousAnswers[30];
-			document.getElementById('q1b').style.visibility = 		previousAnswers[31];
-			document.getElementById('q2').style.display = 			previousAnswers[32];
-			document.getElementById('q2a').style.visibility = 		previousAnswers[33];
-			document.getElementById('q2b').style.visibility = 		previousAnswers[34];
-			document.getElementById('q2c').style.visibility = 		previousAnswers[35];
-			document.getElementById('q2d').style.visibility = 		previousAnswers[36];
-			document.getElementById('q2e').style.visibility = 		previousAnswers[37];
-			document.getElementById('q3').style.display = 			previousAnswers[38];
-			document.getElementById('q4').style.display = 			previousAnswers[39];
-			document.getElementById('q5').style.display = 			previousAnswers[40];
-			document.getElementById('q5a').style.visibility = 		previousAnswers[41];
-			document.getElementById('q5b').style.visibility = 		previousAnswers[42];
-			document.getElementById('q5c').style.visibility = 		previousAnswers[43];
-			document.getElementById('q6').style.display = 			previousAnswers[44];
-			document.getElementById('q6a').style.visibility = 		previousAnswers[45];
+			document.getElementById('q1a').style.visibility = 		previousAnswers[38];
+			document.getElementById('q1b').style.visibility = 		previousAnswers[39];
+			document.getElementById('q1c').style.visibility = 		previousAnswers[40];
+			document.getElementById('q2').style.display = 			previousAnswers[41];
+			document.getElementById('q2a').style.visibility = 		previousAnswers[42];
+			document.getElementById('q2b').style.visibility = 		previousAnswers[43];
+			document.getElementById('q2c').style.visibility = 		previousAnswers[44];
+			document.getElementById('q2d').style.visibility = 		previousAnswers[45];
+			document.getElementById('q2e').style.visibility = 		previousAnswers[46];
+			document.getElementById('q3').style.display = 			previousAnswers[47];
+			document.getElementById('q4').style.display = 			previousAnswers[48];
+			document.getElementById('q5').style.display = 			previousAnswers[49];
+			document.getElementById('q5a').style.visibility = 		previousAnswers[50];
+			document.getElementById('q5b').style.visibility = 		previousAnswers[51];
+			document.getElementById('q5c').style.visibility = 		previousAnswers[52];
+			document.getElementById('q6').style.display = 			previousAnswers[53];
+			document.getElementById('q6a').style.visibility = 		previousAnswers[54];			
 		}
 	}
 	
