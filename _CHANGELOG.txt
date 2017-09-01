@@ -1,20 +1,16 @@
 Added
-	Beta feedback label
-	Support for changing contract
-	Setup() function for loading the contract from cookies
-	Restarting/restoring the assessment now has some placeholders for future variables
-	User is asked to confirm if the amount of oxygen specified is less than the contract's minimum
-	New q1a - does the patient self-administer the oxygen
+	Restored support for Internet Explorer
+	A readme tab has been added
 
 Changed
-	MobilityAssessment onload functions have been moved to setup()
-	MobilityAssessment wording for scripts prompt
-	CSS for infoFloat has been moved from MainStyle to MobilityStyle
-	Wheelchair To/From is now set in q2b
+	Spec is now updated for the new q1a
 
 Fixed
-	Restoring the assessment now restores weightAsked
+	weightAsked is now set to false in restartAssessment()
+	Selected tab now appears correctly in Internet Explorer#
+	Beta label no longer collapses under tabs when the window is narrowed
 
 Removed
-	Internet Explorer is no longer supported
-	Bring wheelchair requirement
+	Archaic css
+	G4S logo no longer links to the readme
+	G4S hover styling has been redacted

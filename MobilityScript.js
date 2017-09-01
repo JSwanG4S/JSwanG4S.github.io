@@ -9,9 +9,9 @@
 	//	CarryChair
 	//	BringWheelchair
 	
-	const maxWheelchairWeight= 300; //kg
-	const maxCarryWeight= 158; //kg, 25st
-	const bariatricWeight = 114; //kg, 18st
+	var maxWheelchairWeight= 300; //kg
+	var maxCarryWeight= 158; //kg, 25st
+	var bariatricWeight = 114; //kg, 18st
 	
 	var iterator = 0;
 	
@@ -58,8 +58,6 @@
 		}
 		
 		changeContract();
-		
-		//window.alert("Contract: " + contract);
 	}
 	
 	
@@ -420,7 +418,7 @@
 							suggestMobility('Wheelchair 2 Man');
 						}
 						else
-						{						
+						{
 							suggestMobility('Seated 2 Man');
 						}
 					}
@@ -704,7 +702,7 @@
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('wheelchairCheck').style.visibility = 'hidden';
 	}
-
+	
 	function showWeightConfirmBox() {
 		document.getElementById('modalOverlay').style.visibility = 'visible';
 		document.getElementById('weightConfirmBox').style.visibility = 'visible';
@@ -713,7 +711,7 @@
 		document.getElementById('modalOverlay').style.visibility = 'hidden';
 		document.getElementById('weightConfirmBox').style.visibility = 'hidden';
 	}
-
+	
 	function showWeightContradictionBox() {
 		document.getElementById('modalOverlay').style.visibility = 'visible';
 		document.getElementById('weightContradictionBox').style.visibility = 'visible';
@@ -863,6 +861,7 @@
 			weight = -1;
 			travelsInWheelchair = false;
 			stretcher = false;
+			weightAsked = false;
 			
 			wheelchairVehicle = false;
 			
@@ -957,7 +956,6 @@
 			updateEquipment("bariatricWheelchair", 	previousAnswers[2] == "true");
 			updateRequirements("bariatric", 		previousAnswers[3] == "true");
 			updateRequirements("carryChair", 		previousAnswers[4] == "true");
-			updateRequirements("bringWheelchair", 	previousAnswers[5] == "true");
 			
 			steps = 								previousAnswers[6] == "true";
 			q2StoreNextQuestion = 					previousAnswers[7];
