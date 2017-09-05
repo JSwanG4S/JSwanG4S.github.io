@@ -30,13 +30,14 @@
 	var bariatric = false;
 	var carryChair = false;
 	var bringWheelchair = false;
+	var electricWheelchair = false;
 	
 	var steps = false;
 	
 	var q2StoreNextQuestion = '';
 	
 	var howMuchOxygen = 0;
-	var weight = -1;	var travelsInWheelchair = false;	var stretcher = false;	
+	var weight = -1;	var usesWheelchair = false;	var stretcher = false;	
 	var wheelchairVehicle = false;
 	
 	var weightAsked = false;
@@ -120,8 +121,10 @@
 				
 				if(document.getElementById('q2Dropdown').value == "Yes"){
 					showSubQuestion('q2a');
+					usesWheelchair = true;
 				}
 				else if(document.getElementById('q2Dropdown').value == "No"){
+					usesWheelchair = false;
 					//Must be at least 2 man if the patient needs oxygen
 					// but if the patient self administers they can still go in a walker car or 1 man ambulance
 					if(o2 && !selfAdministers)
@@ -190,6 +193,7 @@
 
 			case 'q2c': //Is the patient's wheelchair manual or electric?
 				
+				updateEquipment('electricWheelchair', false);
 				if(document.getElementById('q2cDropdown').value == "Electric"){
 					showWheelchairCheckBox();
 				}
@@ -310,7 +314,7 @@
 					}
 				}
 				else if(document.getElementById('q5Dropdown').value == "No"){
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -348,7 +352,7 @@
 							updateRequirements('bariatric', true);
 							updateRequirements('carryChair', true);
 						}
-						if(wheelchairToFrom)
+						if(usesWheelchair)
 						{
 							if(wheelchairVehicle)
 							{
@@ -379,7 +383,7 @@
 				else if(document.getElementById('q5bDropdown').value == "No"){
 					updateRequirements('bariatric', false);
 					updateRequirements('carryChair', false);
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -411,7 +415,7 @@
 					showReferToControlBox("The patient's weight exceeds the maximum carry weight");
 				}
 				else {
-					if(wheelchairToFrom)
+					if(usesWheelchair)
 					{
 						if(wheelchairVehicle)
 						{
@@ -504,6 +508,9 @@
 			additionalDetails = additionalDetails.concat("<p>" + (bariatric ? "Bariatric " : "") + "Wheelchair required to and from vehicle</p>");
 			equipment = equipment.concat("<p>Wheel Chair to/from</p>");
 		}
+		if(electricWheelchair){
+			equipment = equipment.concat("Electric Wheelchair");
+		}
 		if(mobility == 'Bariatric Wheelchair'){
 			equipment = equipment.concat("<p>Bariatric Wheelchair Required</p>");
 		}
@@ -575,6 +582,7 @@
 	
 	function showQuestion(question) {
 		document.getElementById(question).style.display = 'inline-block';
+		highlightQuestion(question);
 	}
 	
 	function showSubQuestion(question) {
@@ -584,7 +592,9 @@
 	
 	function highlightQuestion(question) {
 		document.getElementById(question).className += " highlightQuestion";
-		setTimeout(function(){document.getElementById(question).classList.remove("highlightQuestion");}, 500);		
+		setTimeout(function(){
+			document.getElementById(question).classList.remove("highlightQuestion");
+		}, 500);
 	}
 	
 	
@@ -770,6 +780,18 @@
 						bariatricWheelchair = false;
 					}
 				break;
+			case 'electricWheelchair':
+					if(setActive)
+					{
+						document.getElementById("infoElectricWheelchair").style.backgroundColor = "#44FFFF";
+						electricWheelchair = true;
+					}
+					else
+					{
+						document.getElementById("infoElectricWheelchair").style.backgroundColor = "#DDDDDD";
+						electricWheelchair = false;
+					}
+				break;
 		}
 	}
 	
@@ -834,11 +856,11 @@
 			previousAnswers.push(selfAdministers);		//9
 			previousAnswers.push(weight);				//10
 			previousAnswers.push(weightAsked);			//11
-			previousAnswers.push(travelsInWheelchair);	//12
+			previousAnswers.push(usesWheelchair);		//12
 			previousAnswers.push(stretcher);			//13
-			previousAnswers.push(wheelchairVehicle);	//14
+			previousAnswers.push(wheelchairVehicle);	//14			
+			previousAnswers.push(electricWheelchair);	//15
 			
-			previousAnswers.push("placeholder");		//15
 			previousAnswers.push("placeholder");		//16
 			previousAnswers.push("placeholder");		//17
 			previousAnswers.push("placeholder");		//18
@@ -848,6 +870,7 @@
 			updateEquipment("o2", false);
 			updateEquipment("wheelchairToFrom", false);
 			updateEquipment("bariatricWheelchair", false);
+			updateEquipment("electricWheelchair", false);
 			
 			updateRequirements("bariatric", false);
 			updateRequirements("carryChair", false);
@@ -859,7 +882,7 @@
 		
 			howMuchOxygen = 0;
 			weight = -1;
-			travelsInWheelchair = false;
+			usesWheelchair = false;
 			stretcher = false;
 			weightAsked = false;
 			
@@ -954,6 +977,7 @@
 			updateEquipment("o2", 					previousAnswers[0] == "true");
 			updateEquipment("wheelchairToFrom", 	previousAnswers[1] == "true");
 			updateEquipment("bariatricWheelchair", 	previousAnswers[2] == "true");
+			updateEquipment("electricWheelchair",	previousAnswers[15] == "true");
 			updateRequirements("bariatric", 		previousAnswers[3] == "true");
 			updateRequirements("carryChair", 		previousAnswers[4] == "true");
 			
@@ -963,7 +987,7 @@
 			selfAdministers = 						previousAnswers[9];
 			weight = 								previousAnswers[10];
 			weightAsked = 							previousAnswers[11] == "true";
-			travelsInWheelchair = 					previousAnswers[12] == "true";
+			usesWheelchair = 						previousAnswers[12] == "true";
 			stretcher = 							previousAnswers[13] == "true";
 			wheelchairVehicle = 					previousAnswers[14] == "true";
 			

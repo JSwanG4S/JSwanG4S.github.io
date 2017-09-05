@@ -1,16 +1,9 @@
 Added
-	Restored support for Internet Explorer
-	A readme tab has been added
+	Electric Wheelchair in Equipment
+	Version number label
 
 Changed
-	Spec is now updated for the new q1a
+	Refactored travelsInWheelchair to usesWheelchair
 
 Fixed
-	weightAsked is now set to false in restartAssessment()
-	Selected tab now appears correctly in Internet Explorer#
-	Beta label no longer collapses under tabs when the window is narrowed
-
-Removed
-	Archaic css
-	G4S logo no longer links to the readme
-	G4S hover styling has been redacted
+	Main questions now highlight when shown

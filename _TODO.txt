@@ -1,6 +1,4 @@
 2: Change ~5a to read 'Does the patient need to be carried down the stairs' if they aren't in a wheelchair (otherwise assumed)
 3: Confirm result for spec 35 - Bariatric and needs carrying
-4: Confirm result for spec 41 - Seated 2 Man description says requires conveyance over stairs (may be correct if O2 patient is self-medicated)
-5: Confirm result for spec 45 - Possibly redundant 'Wheel Chair to/from' when the patient also needs a carry chair -> if patient needs a carry chair ignore wheelchair to/from and bring wheelchair
-7: There's an entry for Electric Wheelchair in equipments on cleric, could be added
-8: Allow questions to be highlighted multiple times
+
+Alternate stylesheet to match clericonline?
