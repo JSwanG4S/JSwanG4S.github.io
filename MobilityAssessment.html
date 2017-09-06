@@ -210,23 +210,30 @@
 					<option value="Yes">Yes</option>
 					<option value="No">No</option>
 				</select>
-				<div id="q5a" class="subquestion"> 5a. Are there any turns in the stairs/steps?
+				<div id="q5a" class="subquestion"> 5a. Will the patient need to be carried down the stairs/steps?
 					<select id="q5aDropdown" onchange="updateAnswers('q5a')">
 						<option value="Empty" style="display: none"></option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q5b" class="subquestion"> 5b. Is the patient over 18 stone/114kg?
+				<div id="q5b" class="subquestion"> 5b. Are there any turns in the stairs/steps?
 					<select id="q5bDropdown" onchange="updateAnswers('q5b')">
 						<option value="Empty" style="display: none"></option>
 						<option value="Yes">Yes</option>
 						<option value="No">No</option>
 					</select>
 				</div>
-				<div id="q5c" class="subquestion"> 5c. What is the patient's weight (in kg)?<br />
-					<input type="number" id="q5cInputBox" value="114" min="114" max="999"/>kg
-					<button id="q5cConfirmButton" onclick="updateAnswers('q5c')">Confirm</button>
+				<div id="q5c" class="subquestion"> 5c. Is the patient over 18 stone/114kg?
+					<select id="q5cDropdown" onchange="updateAnswers('q5c')">
+						<option value="Empty" style="display: none"></option>
+						<option value="Yes">Yes</option>
+						<option value="No">No</option>
+					</select>
+				</div>
+				<div id="q5d" class="subquestion"> 5d. What is the patient's weight (in kg)?<br />
+					<input type="number" id="q5dInputBox" value="114" min="114" max="999"/>kg
+					<button id="q5dConfirmButton" onclick="updateAnswers('q5d')">Confirm</button>
 				</div>
 			</div>
 			

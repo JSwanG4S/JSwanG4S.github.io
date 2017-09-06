@@ -1,9 +1,5 @@
 Added
-	Electric Wheelchair in Equipment
-	Version number label
-
-Changed
-	Refactored travelsInWheelchair to usesWheelchair
+	q5a has been changed to read "Will the patient need to be carried down the stairs/steps?"
 
 Fixed
-	Main questions now highlight when shown
+	ChangeTab() now doesn't try to restart the current assessment when switching to the readme
