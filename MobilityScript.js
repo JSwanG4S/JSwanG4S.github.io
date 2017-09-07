@@ -305,13 +305,15 @@
 				
 				if(document.getElementById('q5Dropdown').value == "Yes"){
 					
-					if(weight > maxCarryWeight){
-						showReferToControlBox("The patient's weight exceeds the maximum carry weight");
+					if(usesWheelchair)
+					{
+						showSubQuestion('q5b');
 					}
-					else {
+					else
+					{
 						showSubQuestion('q5a');
-						steps = true;
 					}
+					steps = true;
 				}
 				else if(document.getElementById('q5Dropdown').value == "No"){
 					if(usesWheelchair)

@@ -7,7 +7,7 @@ function ChangeTab(assessment)
 	{
 		activeAssessment = assessment;
 		if(assessment != 'Readme') { 
-			document.getElementById(assessment + "Frame").contentWindow.restartAssessment(); 
+			//document.getElementById(assessment + "Frame").contentWindow.restartAssessment(); 
 		}
 		ClearActiveTabs();
 		ClearActiveFrames();

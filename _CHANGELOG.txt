@@ -1,5 +1,6 @@
 Added
-	q5a has been changed to read "Will the patient need to be carried down the stairs/steps?"
+	q1 now has autofocus
 
-Fixed
-	ChangeTab() now doesn't try to restart the current assessment when switching to the readme
+Changed
+	q5 no longer alerts if the patient is over 300kg - to have reached the alert the user must have already acknowledged the alert from q2e
+	q5 jumps to q5b if 'yes' and the patient is in a wheelchair (by assumption)
