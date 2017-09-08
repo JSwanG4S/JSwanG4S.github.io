@@ -1,6 +1,15 @@
 Added
-	q1 now has autofocus
+	3 and 4 man lift added in requirements
+	If the patient weighs more than 14st they are given a 3 man lift, 18st a 4 man lift
+	Contact number for control in the "refer to control" popups
 
 Changed
-	q5 no longer alerts if the patient is over 300kg - to have reached the alert the user must have already acknowledged the alert from q2e
-	q5 jumps to q5b if 'yes' and the patient is in a wheelchair (by assumption)
+	Weight confirm box button now reads 'Return' instead of 'Confirm'
+	Swapped q2 and q3
+	q2 now reads "Can the patient mobilise on their own?"
+	Carry chair is now turned on whenever the patient needs to be carried
+	Infofloat height is now 85% of viewport to prevent hiding
+	Renamed EMT to Intermediate Tier
+
+Removed
+	q5b and q5c, as we need to know exact weight if the patient is being carried
