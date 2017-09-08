@@ -39,10 +39,13 @@
 	var q3StoreNextQuestion = '';
 	
 	var howMuchOxygen = 0;
-	var weight = -1;	var usesWheelchair = false;	var stretcher = false;
+	var weight = -1;
+	var usesWheelchair = false;
+	var stretcher = false;
 	
 	var threeManLift = false;
-	var fourManLift = false;	
+	var fourManLift = false;
+	
 	var wheelchairVehicle = false;
 	
 	var weightAsked = false;
@@ -103,7 +106,7 @@
 					showSubQuestion('q1c');
 				}
 				else if(document.getElementById('q1bDropdown').value == "No"){
-					showQuestion('q2');
+					showQuestion('q3');
 					howMuchOxygen = 0;
 				}
 				
