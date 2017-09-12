@@ -1,15 +1,5 @@
-Added
-	3 and 4 man lift added in requirements
-	If the patient weighs more than 14st they are given a 3 man lift, 18st a 4 man lift
-	Contact number for control in the "refer to control" popups
-
 Changed
-	Weight confirm box button now reads 'Return' instead of 'Confirm'
-	Swapped q2 and q3
-	q2 now reads "Can the patient mobilise on their own?"
-	Carry chair is now turned on whenever the patient needs to be carried
-	Infofloat height is now 85% of viewport to prevent hiding
-	Renamed EMT to Intermediate Tier
+	q2 has been reworded to 'Can the patient mobilise to the vehicle on their own?'
 
-Removed
-	q5b and q5c, as we need to know exact weight if the patient is being carried
+Fixed
+	Restoring the assessment now works correctly
